@@ -1,22 +1,20 @@
-<label for="#textBoxInput1">Enter number of Year</label>
-<input type="number" id="#textBoxInput1" (change)="onInputValueChanged($event)">
+<label for="#textBoxInput1">Enter Interest Rate</label>
+<input type="number" id="#textBoxInput1" [ngModel]="interestRate"
+       (ngModelChange)="onNgModelChange($event, inputTypeUI.INTEREST)">
 
 <br>
 <label for="#textBoxInput2">Enter number of Year</label>
 <input type="number" id="#textBoxInput2" [ngModel]="tenureInYear"
-       (ngModelChange)="onNgModelChange($event, 'l')">
+       (ngModelChange)="onNgModelChange($event, inputTypeUI.TENURE)">
 
 <br>
 
 <label for="#textBoxInput3">Enter Principal Amount</label>
 <input type="number" id="#textBoxInput3" [ngModel]="principalAmount"
-       (ngModelChange)="onNgModelChange($event, 'm')">
+       (ngModelChange)="onNgModelChange($event, inputTypeUI.PRINCIPAL)">
 
 <hr>
 
 <h3>DataForResult : <br></h3>
-<h2>{{dataTextResponseResult}}</h2>
+<h1>{{dataTextResponseResult}}</h1>
 
-<hr>
-
-<h1>{{tenureInYear}}</h1>

@@ -1,4 +1,8 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {InputType} from "../../../otros/enums/InputType";
+import Calculator from "../../../otros/utils/Calculator";
+import EmiRawData from "../../../otros/datapojo/EmiRawData";
+import emiRawData from "../../../otros/datapojo/EmiRawData";
 
 @Component({
   selector: 'app-home-page',
@@ -16,6 +20,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   interestRate: number = 10;
   principalAmount: number = 10000;
 
+  inputTypeUI = InputType // Simple enum
+
   // ngModelOne: NgModel
 
   constructor() {
@@ -26,20 +32,38 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   }
 
-  onInputValueChanged(event: Event) {
-    // (event.target as HTMLInputElement).value;
-    let htmlInputElement = (event.target as HTMLInputElement);
-    this.dataTextResponseResult = htmlInputElement.value
-  }
+  /*  onInputValueChanged(event: Event) {
+      // (event.target as HTMLInputElement).value;
+      let htmlInputElement = (event.target as HTMLInputElement);
+      this.dataTextResponseResult = htmlInputElement.value
+    }*/
 
   /**
    * @link https://stackoverflow.com/a/34428613/11815154
    * used this instead of banana to observe and change the value before
    * setting to other places*/
-  onNgModelChange($event: any, id: any) {
-    this.tenureInYear = $event
-    this.principalAmount = $event
-    this.interestRate = $event
-    console.log(id)
+  onNgModelChange($event: any, inputType: InputType) {
+    switch (inputType) {
+      case InputType.INTEREST:
+        this.interestRate = $event
+        break;
+      case InputType.PRINCIPAL:
+        this.principalAmount = $event;
+        break;
+      case InputType.TENURE:
+        this.tenureInYear = $event;
+        break;
+      default:
+        console.log(inputType)
+    }
+
+    let calc = new Calculator()
+    let dataCollection: EmiRawData = {
+      interest: this.interestRate,
+      principal: this.principalAmount,
+      tenure: this.tenureInYear
+    }
+    this.dataTextResponseResult = calc.calculateEmi(dataCollection)
   }
+
 }

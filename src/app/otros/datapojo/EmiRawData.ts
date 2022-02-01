@@ -1,7 +1,9 @@
 interface EmiRawData {
   principal: number,
-  interest: number,
-  tenure: number,
+  interestAnnually: number,
+  interestPerMonth:number,
+  tenureInYear: number,
+  tenureInMonth: number,
 }
 
 export default EmiRawData

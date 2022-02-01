@@ -3,6 +3,7 @@ import {InputType} from "../../../otros/enums/InputType";
 import Calculator from "../../../otros/utils/Calculator";
 import EmiRawData from "../../../otros/datapojo/EmiRawData";
 import emiRawData from "../../../otros/datapojo/EmiRawData";
+import {createEmiRawData} from "../../../otros/utils/creator/EmiRawDataCreator";
 
 @Component({
   selector: 'app-home-page',
@@ -58,11 +59,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     }
 
     let calc = new Calculator()
-    let dataCollection: EmiRawData = {
-      interest: this.interestRate,
-      principal: this.principalAmount,
-      tenure: this.tenureInYear
-    }
+    let dataCollection: EmiRawData = createEmiRawData(this.principalAmount, this.interestRate, undefined, this.tenureInYear)
     this.dataTextResponseResult = calc.calculateEmi(dataCollection)
   }
 

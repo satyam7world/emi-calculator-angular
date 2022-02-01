@@ -1,0 +1,38 @@
+<!--Navigation:Title:Bar-->
+<!--suppress AngularUndefinedBinding -->
+<!--todo: move thse li component to ts as it is needed twice-->
+<div class="navbar-fixed">
+  <nav class="deep-orange accent-2">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a routerLink="" class="brand-logo">{{environment.websiteShortName}}</a>
+        <a routerLink="" class="sidenav-trigger" data-target="mobile-nav">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a routerLink="/">Home</a>
+          </li>
+          <li>
+            <a routerLink="/soon">soon</a>
+          </li>
+          <li>
+            <a routerLink="/privacy-policy-web">Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<!--Duplicate Navigation (Required)-->
+<ul class="sidenav" id="mobile-nav">
+  <li>
+    <a routerLink="/">Home</a>
+  </li>
+  <li>
+    <a routerLink="/soon">soon</a>
+  </li>
+  <li>
+    <a routerLink="/privacy-policy-web">Privacy Policy</a>
+  </li>
+</ul>

@@ -1,7 +1,8 @@
 import EmiRawData from "../datapojo/EmiRawData";
+import EmiResultResponse from "../datapojo/EmiResultResponse";
 
 class Calculator {
-  calculateEmi(data: EmiRawData): string {
+  calculateEmi(data: EmiRawData): EmiResultResponse {
     let p = data.principal
     // let t = data.tenureInMonth
     let r = data.interestPerMonth
@@ -22,9 +23,13 @@ class Calculator {
 
     let totalMoneyToPay = calculationMergeThirdPart * n
 
-    console.log(totalMoneyToPay)
+    const totalInterestOverTime = totalMoneyToPay - p;
 
-    return calculationMergeThirdPart.toString()
+
+    return {
+      emiPerMonth: calculationMergeThirdPart, emiRawData: data,
+      totalMoneyToPay, totalInterestOverTime
+    }
   }
 }
 

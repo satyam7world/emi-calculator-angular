@@ -2,8 +2,9 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {InputType} from "../../../otros/enums/InputType";
 import Calculator from "../../../otros/utils/Calculator";
 import EmiRawData from "../../../otros/datapojo/EmiRawData";
-import emiRawData from "../../../otros/datapojo/EmiRawData";
 import {createEmiRawData} from "../../../otros/utils/creator/EmiRawDataCreator";
+import {ChartData, ChartOptions, ChartType} from "chart.js";
+import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
 
 @Component({
   selector: 'app-home-page',
@@ -25,9 +26,12 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   // ngModelOne: NgModel
 
+  emiResponseResult: EmiResultResponse = this.calculateEmi()
+
   constructor() {
 
   }
+
 
   ngOnInit(): void {
 
@@ -58,9 +62,33 @@ export class HomePageComponent implements OnInit, AfterViewInit {
         console.log(inputType)
     }
 
+    this.calculateEmi()
+
+  }
+
+  calculateEmi(): EmiResultResponse {
     let calc = new Calculator()
     let dataCollection: EmiRawData = createEmiRawData(this.principalAmount, this.interestRate, undefined, this.tenureInYear)
-    this.dataTextResponseResult = calc.calculateEmi(dataCollection)
+    const data = calc.calculateEmi(dataCollection);
+    this.emiResponseResult = data
+    return data
   }
+
+  // Doughnut
+  // public doughnutChartLabels: string[] = ;
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: ['Principal', 'Interest'],
+    datasets: [
+      {
+        data: [this.emiResponseResult.emiRawData.principal,
+          this.emiResponseResult.totalInterestOverTime]
+      },
+      // {data: [50, 150, 120]},
+      // {data: [250, 130, 70]}
+    ],
+  };
+  public doughnutChartType: ChartType = 'doughnut';
+  public doughnutChartOption: ChartOptions = {}
+
 
 }

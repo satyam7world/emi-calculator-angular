@@ -7,6 +7,7 @@ import {HomePageComponent} from './comp/pages/home-page/home-page.component';
 import {FormsModule} from "@angular/forms";
 import { NavbarComponent } from './comp/common/navbar/navbar.component';
 import { FooterDfComponent } from './comp/common/footer-df/footer-df.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FooterDfComponent } from './comp/common/footer-df/footer-df.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

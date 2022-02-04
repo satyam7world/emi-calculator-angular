@@ -32,7 +32,7 @@ export function createEmiRawData(principalAmount: number,
     interestPerMonth: (annualInterest / 1200)
   }
 
-  console.log(emiRawData)
+  // console.log(emiRawData)
 
   return emiRawData
 

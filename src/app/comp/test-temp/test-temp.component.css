@@ -1,9 +1,7 @@
-#chart {
-  max-width: 500px;
-  margin: 25px auto;
-  padding: 0;
+.col {
+  background: #ff7979;
+  margin: 1px;
 }
-
 
 .section.container {
   display: flex;

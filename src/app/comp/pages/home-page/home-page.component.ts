@@ -1,10 +1,19 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {InputType} from "../../../otros/enums/InputType";
 import Calculator from "../../../otros/utils/Calculator";
 import EmiRawData from "../../../otros/datapojo/EmiRawData";
 import {createEmiRawData} from "../../../otros/utils/creator/EmiRawDataCreator";
-import {ChartData, ChartOptions, ChartType} from "chart.js";
 import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
+import {ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent} from "ng-apexcharts";
+import * as M from "materialize-css";
+
+type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  responsive: ApexResponsive[];
+  labels: any;
+  chartColor: any;
+};
 
 @Component({
   selector: 'app-home-page',
@@ -13,35 +22,86 @@ import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
 })
 export class HomePageComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('chartApexF') chart: ChartComponent;
+  private everyThingInitForChart = false
+
+  countries = [
+    {id: 1, name: "United States"},
+    {id: 2, name: "Australia"},
+    {id: 3, name: "Canada"},
+    {id: 4, name: "Brazil"},
+    {id: 5, name: "England"}
+  ];
+  selectedValue = null;
+  defaultCurrency: string = 'INR'
+
   ngAfterViewInit(): void {
+    this.everyThingInitForChart = true;
+
+    const elems = document.querySelectorAll('select');
+    const instances = M.FormSelect.init(elems, {});
+
   }
 
   dataTextResponseResult: string;
 
-  tenureInYear: number = 1;
-  interestRate: number = 10;
+  tenureInYear: number = 10;
+  interestRate: number = 12;
   principalAmount: number = 10000;
 
   inputTypeUI = InputType // Simple enum
 
   // ngModelOne: NgModel
 
-  emiResponseResult: EmiResultResponse = this.calculateEmi()
+  emiResponseResult: EmiResultResponse = this.calculateEmi();
+
+  public chartOptions: ChartOptions;
 
   constructor() {
+    this.chartOptions = {
+      series: [this.emiResponseResult.totalInterestOverTime, this.emiResponseResult.emiRawData.principal],
+      chart: {
+        type: "donut",
+        dropShadow: {
+          enabled: true,
+          blur: 2,
+        },
+        animations: {
+          enabled: true,
+        },
+      },
+      labels: ["Interest", "Principal"],
+      chartColor: ['#ff6b81', '#a4b0be', '#7bed9f', '#ff6b81', '#9C27B0'],
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            },
+            legend: {
+              position: "bottom"
+            }
+          }
+        }
+      ]
+    };
 
   }
 
 
   ngOnInit(): void {
+    // For dropdown to work as they need init from Materialize Css library
+    const elems = document.querySelectorAll('select');
+    const instances = M.FormSelect.init(elems, {});
+
+    this.setupSettingsControl()
+  }
+
+  setupSettingsControl() { // Will set the default option at startUp
 
   }
 
-  /*  onInputValueChanged(event: Event) {
-      // (event.target as HTMLInputElement).value;
-      let htmlInputElement = (event.target as HTMLInputElement);
-      this.dataTextResponseResult = htmlInputElement.value
-    }*/
 
   /**
    * @link https://stackoverflow.com/a/34428613/11815154
@@ -59,7 +119,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
         this.tenureInYear = $event;
         break;
       default:
-        console.log(inputType)
+      // console.log(inputType)
     }
 
     this.calculateEmi()
@@ -71,24 +131,20 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     let dataCollection: EmiRawData = createEmiRawData(this.principalAmount, this.interestRate, undefined, this.tenureInYear)
     const data = calc.calculateEmi(dataCollection);
     this.emiResponseResult = data
-    return data
+    // update chart
+    if (this.everyThingInitForChart) {
+      console.log("updating chart data")
+      this.chart.updateSeries([this.emiResponseResult.totalInterestOverTime,
+        this.emiResponseResult.emiRawData.principal], true);
+
+    }
+    return data;
   }
 
   // Doughnut
-  // public doughnutChartLabels: string[] = ;
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: ['Principal', 'Interest'],
-    datasets: [
-      {
-        data: [this.emiResponseResult.emiRawData.principal,
-          this.emiResponseResult.totalInterestOverTime]
-      },
-      // {data: [50, 150, 120]},
-      // {data: [250, 130, 70]}
-    ],
-  };
-  public doughnutChartType: ChartType = 'doughnut';
-  public doughnutChartOption: ChartOptions = {}
 
 
+  onSettingsNgModelChange($event: any) {
+    console.log($event)
+  }
 }

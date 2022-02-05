@@ -25,6 +25,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   @ViewChild('chartApexF') chart: ChartComponent;
   private everyThingInitForChart = false
 
+  // todo : in setting def valu for interest principal and tenure
+
   countries = [
     {id: 1, name: "United States"},
     {id: 2, name: "Australia"},

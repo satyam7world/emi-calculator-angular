@@ -27,6 +27,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   // todo : in setting def valu for interest principal and tenure
 
+  // todo : angular json budget edited
+
   countries = [
     {id: 1, name: "United States"},
     {id: 2, name: "Australia"},

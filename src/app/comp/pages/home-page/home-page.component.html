@@ -3,9 +3,10 @@
     <!--Ui Component-->
     <div class="columnX">
       <div class="input-field">
+        <!--removed = class="validate" coz when decimal value it was becoming red-->
         <label class="active" for="#textBoxInput1">Enter Interest Rate</label>
         <input placeholder="Interest"
-               class="validate" type="number" id="#textBoxInput1" [ngModel]="interestRate"
+               type="number" id="#textBoxInput1" [ngModel]="interestRate"
                (ngModelChange)="onNgModelChange($event, inputTypeUI.INTEREST)">
       </div>
 
@@ -34,9 +35,10 @@
                    [series]="chartOptions.series"
                    [chart]="chartOptions.chart"
                    [labels]="chartOptions.labels"
-                   [responsive]="chartOptions.responsive"
+                   [legend]="chartOptions.legend"
                    [colors]="chartOptions.chartColor"
         ></apx-chart>
+        <!--                   [responsive]="chartOptions.responsive"-->
       </div>
 
     </div>
@@ -47,17 +49,22 @@
     <h3 class="center">Calculator Settings</h3>
 
     <div class="row">
-      <div class="input-field col s12">
-        <select [ngModel]="selectedValue" (ngModelChange)="onSettingsNgModelChange($event)">
+      <div class="col s12">
+        <!--Due to browser-default added input-field removed in select : will do later-->
+        <label>Display Currency Symbol</label>
+        <select class="browser-defaultX">
           <!--also empty-->
           <!--todo : load it from cache or settings--><!-- <option value="" disabled selected>Choose your Currency</option>-->
-          <!--          <option value="inr">INR &#8377;</option>-->
-          <option *ngFor="let c of countries" [ngValue]="c.id" [defaultSelected]="c.id === 1" >{{c.name}}</option>
+          <option value="inr">Indian Rupee Sign &#8377;</option>
+          <option value="usd">Dollar Sign &dollar;</option>
+          <option value="eur">Euro Sign &euro;</option>
+          <option value="yen">Yen Sign &yen;</option>
+          <option value="pound">Pound Sign &pound;</option>
         </select>
-        <label>Display Currency</label>
       </div>
-      <div class="input-field col s12">
-        <select>
+      <div class="col s12">
+        <label>Number Rounding</label>
+        <select class="browser-default">
           <!-- <option value="" disabled selected>Choose your Currency</option>-->
           <option value="two-digit">Show two digits decimal</option>
           <option value="no-rounding">No Rounding</option>
@@ -66,7 +73,18 @@
           <option value="one-digit">Show one digits decimal</option>
           <option value="three-digit">Show three digits decimal</option>
         </select>
-        <label>Display Currency</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="first_name" type="number">
+        <label for="first_name">Default Interest</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="second_name" type="number">
+        <label for="second_name">Default Tenure Value</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="idPrincipalDefault" type="number">
+        <label for="idPrincipalDefault">Default Principal Value</label>
       </div>
     </div>
   </div>

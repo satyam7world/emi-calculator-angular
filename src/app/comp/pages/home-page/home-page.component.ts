@@ -4,15 +4,16 @@ import Calculator from "../../../otros/utils/Calculator";
 import EmiRawData from "../../../otros/datapojo/EmiRawData";
 import {createEmiRawData} from "../../../otros/utils/creator/EmiRawDataCreator";
 import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
-import {ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent} from "ng-apexcharts";
+import {ApexChart, ApexLegend, ApexNonAxisChartSeries, ApexResponsive, ChartComponent} from "ng-apexcharts";
 import * as M from "materialize-css";
 
 type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  responsive: ApexResponsive[];
+  // responsive: ApexResponsive[];
   labels: any;
   chartColor: any;
+  legend: ApexLegend
 };
 
 @Component({
@@ -42,8 +43,13 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.everyThingInitForChart = true;
 
-    const elems = document.querySelectorAll('select');
-    const instances = M.FormSelect.init(elems, {});
+    // const elems = document.querySelectorAll('select');
+    // const instances = M.FormSelect.init(elems, {});
+
+    // M.updateTextFields()
+
+
+    M.AutoInit();
 
   }
 
@@ -76,19 +82,22 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       },
       labels: ["Interest", "Principal"],
       chartColor: ['#ff6b81', '#a4b0be', '#7bed9f', '#ff6b81', '#9C27B0'],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
+      legend: {
+        position: "bottom",
+      }
+      /*      responsive: [
+              {
+                breakpoint: 480,
+                options: {
+                  chart: {
+                    width: 200
+                  },
+                  legend: {
+                    position: "bottom"
+                  }
+                }
+              }
+            ]*/
     };
 
   }
@@ -96,8 +105,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // For dropdown to work as they need init from Materialize Css library
-    const elems = document.querySelectorAll('select');
-    const instances = M.FormSelect.init(elems, {});
+    // const elems = document.querySelectorAll('select');
+    // const instances = M.FormSelect.init(elems, {});
 
     this.setupSettingsControl()
   }

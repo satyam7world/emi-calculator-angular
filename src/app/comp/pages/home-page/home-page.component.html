@@ -4,7 +4,7 @@
     <div class="columnX">
       <div class="input-field">
         <!--removed = class="validate" coz when decimal value it was becoming red-->
-        <label class="active" for="#textBoxInput1">Enter Interest Rate</label>
+        <label class="active" for="#textBoxInput1">Enter Interest Rate %</label>
         <input placeholder="Interest"
                type="number" id="#textBoxInput1" [ngModel]="interestRate"
                (ngModelChange)="onNgModelChange($event, inputTypeUI.INTEREST)">
@@ -49,10 +49,10 @@
     <h3 class="center">Calculator Settings</h3>
 
     <div class="row">
-      <div class="col s12">
+      <div class="input-field col s12">
         <!--Due to browser-default added input-field removed in select : will do later-->
-        <label>Display Currency Symbol</label>
-        <select class="browser-defaultX">
+        <label class="active">Display Currency Symbol</label>
+        <select id="displayCurrencySymbolSelectSetting" class="browser-defaultX" (change)="onSettingsNgModelChange($event.target)">
           <!--also empty-->
           <!--todo : load it from cache or settings--><!-- <option value="" disabled selected>Choose your Currency</option>-->
           <option value="inr">Indian Rupee Sign &#8377;</option>
@@ -62,9 +62,10 @@
           <option value="pound">Pound Sign &pound;</option>
         </select>
       </div>
-      <div class="col s12">
-        <label>Number Rounding</label>
-        <select class="browser-default">
+      <div class="input-field col s12">
+        <label class="active">Number Rounding</label>
+<!--removed class="browser-default"-->
+        <select id="numberRoundingSelectSetting" (change)="onSettingsNgModelChange($event.target)">
           <!-- <option value="" disabled selected>Choose your Currency</option>-->
           <option value="two-digit">Show two digits decimal</option>
           <option value="no-rounding">No Rounding</option>

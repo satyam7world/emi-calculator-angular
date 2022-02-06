@@ -158,6 +158,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
 
   onSettingsNgModelChange($event: any) {
-    console.log($event)
+    let data = ($event as HTMLInputElement)
+    console.log(data.id,data.value)
   }
 }

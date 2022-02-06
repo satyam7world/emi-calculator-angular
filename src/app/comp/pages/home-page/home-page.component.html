@@ -2,24 +2,45 @@
   <div class="section container">
     <!--Ui Component-->
     <div class="columnX">
-      <div class="input-field">
-        <!--removed = class="validate" coz when decimal value it was becoming red-->
-        <label class="active" for="#textBoxInput1">Enter Interest Rate %</label>
-        <input placeholder="Interest"
-               type="number" id="#textBoxInput1" [ngModel]="interestRate"
-               (ngModelChange)="onNgModelChange($event, inputTypeUI.INTEREST)">
-      </div>
+      <div class="row">
 
-      <div class="input-field">
-        <label class="active" for="#textBoxInput2">Enter number of Year</label>
-        <input type="number" id="#textBoxInput2" [ngModel]="tenureInYear"
-               (ngModelChange)="onNgModelChange($event, inputTypeUI.TENURE)">
-      </div>
+        <div class="input-field col s12">
+          <!--removed = class="validate" coz when decimal value it was becoming red-->
+          <label class="active" for="#textBoxInput1">Enter Interest Rate %</label>
+          <input placeholder="Interest"
+                 type="number" id="#textBoxInput1" [ngModel]="interestRate"
+                 (ngModelChange)="onNgModelChange($event, inputTypeUI.INTEREST)">
+        </div>
 
-      <div class="input-field">
-        <label class="active" for="#textBoxInput3">Enter Principal Amount</label>
-        <input type="number" id="#textBoxInput3" [ngModel]="principalAmount"
-               (ngModelChange)="onNgModelChange($event, inputTypeUI.PRINCIPAL)">
+        <div class="input-field col s8">
+          <label class="active" for="#textBoxInput2">Enter number of Year</label>
+          <input type="number" id="#textBoxInput2" [ngModel]="tenureInYear"
+                 (ngModelChange)="onNgModelChange($event, inputTypeUI.TENURE)">
+        </div>
+
+
+        <div class="col s4">
+          <p>
+            <label>
+              <input class="with-gap" name="tenureUnit" type="radio"
+                     (change)="onNgModelChange(true, inputTypeUI.TENURE_UNIT_CHANGER)"/>
+              <span>Month</span>
+            </label></p>
+          <p>
+            <label>
+              <input class="with-gap" name="tenureUnit" type="radio"
+                     checked
+                     (change)="onNgModelChange(false, inputTypeUI.TENURE_UNIT_CHANGER)"/>
+              <span>Year</span>
+            </label></p>
+        </div>
+
+        <div class="input-field col s12">
+          <label class="active" for="#textBoxInput3">Enter Principal Amount</label>
+          <input type="number" id="#textBoxInput3" [ngModel]="principalAmount"
+                 (ngModelChange)="onNgModelChange($event, inputTypeUI.PRINCIPAL)">
+        </div>
+
       </div>
 
       <h4>Emi Per Month = <strong>{{emiResponseResult.emiPerMonth}}</strong></h4>
@@ -64,7 +85,7 @@
       </div>
       <div class="input-field col s12">
         <label class="active">Number Rounding</label>
-<!--removed class="browser-default"-->
+        <!--removed class="browser-default"-->
         <select id="numberRoundingSelectSetting" (change)="onSettingsNgModelChange($event.target)">
           <!-- <option value="" disabled selected>Choose your Currency</option>-->
           <option value="two-digit">Show two digits decimal</option>
@@ -76,15 +97,15 @@
         </select>
       </div>
       <div class="input-field col s4">
-        <input id="first_name" type="number">
-        <label for="first_name">Default Interest</label>
+        <input id="defaultInterest" type="number" (change)="onSettingsNgModelChange($event.target)">
+        <label for="defaultInterest">Default Interest</label>
       </div>
       <div class="input-field col s4">
-        <input id="second_name" type="number">
-        <label for="second_name">Default Tenure Value</label>
+        <input id="defaultTenureValue" type="number" (change)="onSettingsNgModelChange($event.target)">
+        <label for="defaultTenureValue">Default Tenure Value</label>
       </div>
       <div class="input-field col s4">
-        <input id="idPrincipalDefault" type="number">
+        <input id="idPrincipalDefault" type="number" (change)="onSettingsNgModelChange($event.target)">
         <label for="idPrincipalDefault">Default Principal Value</label>
       </div>
     </div>

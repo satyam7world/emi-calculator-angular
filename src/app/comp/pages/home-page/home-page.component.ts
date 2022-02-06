@@ -4,7 +4,7 @@ import Calculator from "../../../otros/utils/Calculator";
 import EmiRawData from "../../../otros/datapojo/EmiRawData";
 import {createEmiRawData} from "../../../otros/utils/creator/EmiRawDataCreator";
 import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
-import {ApexChart, ApexLegend, ApexNonAxisChartSeries, ApexResponsive, ChartComponent} from "ng-apexcharts";
+import {ApexChart, ApexLegend, ApexNonAxisChartSeries, ChartComponent} from "ng-apexcharts";
 import * as M from "materialize-css";
 
 type ChartOptions = {
@@ -55,9 +55,12 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   dataTextResponseResult: string;
 
-  tenureInYear: number = 10;
+  tenureInYear: number = 10; // this is now tenure, old variable name
   interestRate: number = 12;
   principalAmount: number = 10000;
+
+  // todo : 06/02/22 / add a setting option to convert value on toggle
+  tenureUnitInMonth: boolean = false
 
   inputTypeUI = InputType // Simple enum
 
@@ -66,6 +69,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   emiResponseResult: EmiResultResponse = this.calculateEmi();
 
   public chartOptions: ChartOptions;
+
+  // todo better select with default value as selected
 
   constructor() {
     this.chartOptions = {
@@ -131,6 +136,11 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       case InputType.TENURE:
         this.tenureInYear = $event;
         break;
+      case InputType.TENURE_UNIT_CHANGER:
+        // console.log(this.tenureUnitInMonth)
+        // console.log(inputType, $event)
+        this.tenureUnitInMonth = $event
+        break;
       default:
       // console.log(inputType)
     }
@@ -141,12 +151,19 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   calculateEmi(): EmiResultResponse {
     let calc = new Calculator()
-    let dataCollection: EmiRawData = createEmiRawData(this.principalAmount, this.interestRate, undefined, this.tenureInYear)
+    let dataCollection: EmiRawData;
+    if (this.tenureUnitInMonth) {
+      dataCollection = createEmiRawData(this.principalAmount, this.interestRate,
+        this.tenureInYear, undefined);
+    } else {
+      dataCollection = createEmiRawData(this.principalAmount, this.interestRate,
+        undefined, this.tenureInYear)
+    }
     const data = calc.calculateEmi(dataCollection);
     this.emiResponseResult = data
     // update chart
     if (this.everyThingInitForChart) {
-      console.log("updating chart data")
+      // console.log("updating chart data")
       this.chart.updateSeries([this.emiResponseResult.totalInterestOverTime,
         this.emiResponseResult.emiRawData.principal], true);
 
@@ -154,11 +171,13 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     return data;
   }
 
-  // Doughnut
-
-
-  onSettingsNgModelChange($event: any) {
+  onSettingsNgModelChange($event: any): void {
     let data = ($event as HTMLInputElement)
-    console.log(data.id,data.value)
+    // console.log(data.id, data.value)
+    switch (data.id) {
+      case "displayCurrencySymbolSelectSetting":
+        localStorage.setItem("displayCurrencySymbolSelectSetting", data.value)
+        break;
+    }
   }
 }

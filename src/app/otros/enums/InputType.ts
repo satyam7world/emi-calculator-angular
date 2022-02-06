@@ -3,4 +3,5 @@ export enum InputType {
   INTEREST,
   PRINCIPAL,
   WASTAGE,
+  TENURE_UNIT_CHANGER,
 }

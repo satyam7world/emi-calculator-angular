@@ -30,15 +30,6 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   // todo : angular json budget edited
 
-  countries = [
-    {id: 1, name: "United States"},
-    {id: 2, name: "Australia"},
-    {id: 3, name: "Canada"},
-    {id: 4, name: "Brazil"},
-    {id: 5, name: "England"}
-  ];
-  selectedValue = null;
-  defaultCurrency: string = 'INR'
 
   ngAfterViewInit(): void {
     this.everyThingInitForChart = true;
@@ -49,7 +40,16 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     // M.updateTextFields()
 
 
-    M.AutoInit();
+    // M.AutoInit();
+
+    // setTimeout(() => {
+    //   M.FormSelect.init(document.querySelectorAll('#displayCurrencySymbolSelectSetting'), {})
+    // }, 0)
+
+    //https://stackoverflow.com/a/56840868/11815154
+    setTimeout(() => {
+      M.AutoInit();
+    }, 0)
 
   }
 
@@ -71,6 +71,17 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   public chartOptions: ChartOptions;
 
   // todo better select with default value as selected
+
+  currencySymbols = [
+    {value: '₹', nameX: "Indian Rupee Sign ₹"},
+    {value: '$', nameX: "Dollar Sign $"},
+    {value: '€', nameX: "Euro Sign €"},
+    {value: '¥', nameX: "Yen Sign ¥"},
+    {value: '£', nameX: "Pound Sign £"}];
+
+  currencySymbolsNgModelNumber: string = localStorage.getItem("displayCurrencySymbolSelectSetting") || '₹';
+
+  // currencySignAppendable = localStorage.getItem("displayCurrencySymbolSelectSetting") || '₹';
 
   constructor() {
     this.chartOptions = {
@@ -171,13 +182,25 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     return data;
   }
 
-  onSettingsNgModelChange($event: any): void {
+  onSettingsNgModelChange($event: any): void { // No more required
     let data = ($event as HTMLInputElement)
     // console.log(data.id, data.value)
     switch (data.id) {
       case "displayCurrencySymbolSelectSetting":
-        localStorage.setItem("displayCurrencySymbolSelectSetting", data.value)
+        console.log("helloca leed")
+        // data.value contains a number so using the ngModel Value
+        localStorage.setItem("displayCurrencySymbolSelectSetting", this.currencySymbolsNgModelNumber)
         break;
     }
   }
 }
+
+
+/*
+*
+*  currencySymbols = [
+    {value: '&#8377', nameX: "Indian Rupee Sign &#8377;"},
+    {value: '&dollar', nameX: "Dollar Sign &dollar;"},
+    {value: '&euro', nameX: "Euro Sign &euro;"},
+    {value: '&yen', nameX: "Yen Sign &yen;"},
+    {value: '&pound', nameX: "Pound Sign &pound;"}];*/

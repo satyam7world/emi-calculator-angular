@@ -43,9 +43,9 @@
 
       </div>
 
-      <h4>Emi Per Month = <strong>{{emiResponseResult.emiPerMonth}}</strong></h4>
-      <h5>Total Interest = <strong>{{emiResponseResult.totalInterestOverTime}}</strong></h5>
-      <h5>Total Money to Pay = <strong>{{emiResponseResult.totalMoneyToPay}}</strong></h5>
+      <h4>Emi Per Month = <strong>{{emiResponseResult.emiPerMonth}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h4>
+      <h5>Total Interest = <strong>{{emiResponseResult.totalInterestOverTime}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h5>
+      <h5>Total Money to Pay = <strong>{{emiResponseResult.totalMoneyToPay}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h5>
 
 
     </div>
@@ -73,14 +73,12 @@
       <div class="input-field col s12">
         <!--Due to browser-default added input-field removed in select : will do later-->
         <label class="active">Display Currency Symbol</label>
-        <select id="displayCurrencySymbolSelectSetting" class="browser-defaultX" (change)="onSettingsNgModelChange($event.target)">
+        <select id="displayCurrencySymbolSelectSetting"
+                class="browser-defaultX" [(ngModel)]="currencySymbolsNgModelNumber" (change)="onSettingsNgModelChange($event.target )">
           <!--also empty-->
           <!--todo : load it from cache or settings--><!-- <option value="" disabled selected>Choose your Currency</option>-->
-          <option value="inr">Indian Rupee Sign &#8377;</option>
-          <option value="usd">Dollar Sign &dollar;</option>
-          <option value="eur">Euro Sign &euro;</option>
-          <option value="yen">Yen Sign &yen;</option>
-          <option value="pound">Pound Sign &pound;</option>
+<!--          <option value="" disabled selected>Select a Currency Symbol</option>-->
+          <option *ngFor="let a of currencySymbols" [ngValue]="a.value">{{a.nameX}}</option>
         </select>
       </div>
       <div class="input-field col s12">

@@ -31,7 +31,7 @@ class Calculator {
 
     let totalMoneyToPay = calculationMergeThirdPart * n
 
-    const totalInterestOverTime = totalMoneyToPay - p;
+    const rawTotalInterestOverTime = totalMoneyToPay - p;
 
 
     let totalMoneyToPayFinal = "Error-8.I";
@@ -47,32 +47,32 @@ class Calculator {
       case 'two-digit':
         totalMoneyToPayFinal = Number(totalMoneyToPay).toFixed(2);
         emiPerMonthFinal = Number(calculationMergeThirdPart).toFixed(2);
-        totalInterestOverTimeFinal = Number(totalInterestOverTime).toFixed(2);
+        totalInterestOverTimeFinal = Number(rawTotalInterestOverTime).toFixed(2);
         break;
       case 'no-rounding':
         totalMoneyToPayFinal = totalMoneyToPay.toString()
         emiPerMonthFinal = calculationMergeThirdPart.toString()
-        totalInterestOverTimeFinal = totalInterestOverTime.toString()
+        totalInterestOverTimeFinal = rawTotalInterestOverTime.toString()
         break;
       case 'ceil':
         totalMoneyToPayFinal = Math.ceil(totalMoneyToPay).toString()
         emiPerMonthFinal = Math.ceil(calculationMergeThirdPart).toString()
-        totalInterestOverTimeFinal = Math.ceil(totalInterestOverTime).toString()
+        totalInterestOverTimeFinal = Math.ceil(rawTotalInterestOverTime).toString()
         break;
       case 'floor':
         totalMoneyToPayFinal = Math.floor(totalMoneyToPay).toString()
         emiPerMonthFinal = Math.floor(calculationMergeThirdPart).toString()
-        totalInterestOverTimeFinal = Math.floor(totalInterestOverTime).toString()
+        totalInterestOverTimeFinal = Math.floor(rawTotalInterestOverTime).toString()
         break;
       case 'one-digit':
         totalMoneyToPayFinal = Number(totalMoneyToPay).toFixed(1);
         emiPerMonthFinal = Number(calculationMergeThirdPart).toFixed(1);
-        totalInterestOverTimeFinal = Number(totalInterestOverTime).toFixed(1);
+        totalInterestOverTimeFinal = Number(rawTotalInterestOverTime).toFixed(1);
         break;
       case 'three-digit':
         totalMoneyToPayFinal = Number(totalMoneyToPay).toFixed(3);
         emiPerMonthFinal = Number(calculationMergeThirdPart).toFixed(3);
-        totalInterestOverTimeFinal = Number(totalInterestOverTime).toFixed(3);
+        totalInterestOverTimeFinal = Number(rawTotalInterestOverTime).toFixed(3);
         break;
       default:
         totalMoneyToPayFinal = "Error-8.Q";
@@ -84,7 +84,8 @@ class Calculator {
 
     return {
       emiPerMonth: emiPerMonthFinal, emiRawData: data,
-      totalMoneyToPay: totalMoneyToPayFinal, totalInterestOverTime: totalInterestOverTimeFinal
+      totalMoneyToPay: totalMoneyToPayFinal, totalInterestOverTimeAccurate: rawTotalInterestOverTime,
+      totalInterestOverTimeRounded: totalInterestOverTimeFinal
     }
   }
 }

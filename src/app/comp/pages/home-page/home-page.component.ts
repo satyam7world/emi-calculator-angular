@@ -52,15 +52,25 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     //https://stackoverflow.com/a/56840868/11815154
     setTimeout(() => {
       M.AutoInit();
+      // console.log('defInterest', this.defaultInterestRateNgModel)
     }, 0)
 
+    // console.log('defInterest', this.defaultInterestRateNgModel)
   }
 
   dataTextResponseResult: string;
 
-  tenureInYear: number = 10; // this is now tenure, old variable name
-  interestRate: number = 12;
-  principalAmount: number = 10000;
+  // no update for settings input which will remain static unless user changed manually, value // https://stackoverflow.com/a/64864412/11815154
+  defaultInterestNoUpdate = +(localStorage.getItem('defaultInterest') || environment.defaultInterest);
+
+  // todo: same for both left
+
+  tenureTime: number = +(localStorage.getItem('defaultTenureValue') || environment.defaultTenure);
+  //  https://stackoverflow.com/a/14668510/11815154 // +(string to number)
+  interestRate: number = this.defaultInterestNoUpdate
+  //idPrincipalDefault : the setter : settings one
+  principalAmount: number = +(localStorage.getItem('idPrincipalDefault') || environment.defaultPrincipal);
+
 
   // todo : 06/02/22 / add a setting option to convert value on toggle
   tenureUnitInMonth: boolean = false
@@ -98,7 +108,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this.chartOptions = {
-      series: [this.emiResponseResult.totalInterestOverTime, this.emiResponseResult.emiRawData.principal],
+      series: [this.emiResponseResult.totalInterestOverTimeAccurate, this.emiResponseResult.emiRawData.principal],
       chart: {
         type: "donut",
         dropShadow: {
@@ -158,7 +168,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
         this.principalAmount = $event;
         break;
       case InputType.TENURE:
-        this.tenureInYear = $event;
+        this.tenureTime = $event;
         break;
       case InputType.TENURE_UNIT_CHANGER:
         // console.log(this.tenureUnitInMonth)
@@ -178,10 +188,10 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     let dataCollection: EmiRawData;
     if (this.tenureUnitInMonth) {
       dataCollection = createEmiRawData(this.principalAmount, this.interestRate,
-        this.tenureInYear, undefined);
+        this.tenureTime, undefined);
     } else {
       dataCollection = createEmiRawData(this.principalAmount, this.interestRate,
-        undefined, this.tenureInYear)
+        undefined, this.tenureTime)
     }
     // console.log(this.settingsRoundingOptionNgModel)
     const data = calc.calculateEmi(dataCollection);
@@ -189,7 +199,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     // update chart
     if (this.everyThingInitForChart) {
       // console.log("updating chart data")
-      this.chart.updateSeries([this.emiResponseResult.totalInterestOverTime,
+      this.chart.updateSeries([this.emiResponseResult.totalInterestOverTimeAccurate,
         this.emiResponseResult.emiRawData.principal], true);
 
     }
@@ -209,6 +219,18 @@ export class HomePageComponent implements OnInit, AfterViewInit {
         // data.value contains a number so using the ngModel Value
         localStorage.setItem("numberRoundingSelectSetting", this.settingsRoundingOptionNgModel)
         this.calculateEmi()
+        break;
+      case 'defaultTenureValue':
+        console.log('defaultTenureValue', data.value)
+        localStorage.setItem('defaultTenureValue', data.value)
+        break;
+      case 'idPrincipalDefault':
+        console.log('idPrincipalDefault', data.value)
+        localStorage.setItem('idPrincipalDefault', data.value)
+        break;
+      case 'defaultInterest':
+        console.log('defaultInterest', data.value)
+        localStorage.setItem('defaultInterest', data.value)
         break;
 
     }

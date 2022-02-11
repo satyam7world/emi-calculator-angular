@@ -14,7 +14,7 @@
 
         <div class="input-field col s8">
           <label class="active" for="#textBoxInput2">Enter number of Year</label>
-          <input type="number" id="#textBoxInput2" [ngModel]="tenureInYear"
+          <input type="number" id="#textBoxInput2" [ngModel]="tenureTime"
                  (ngModelChange)="onNgModelChange($event, inputTypeUI.TENURE)">
         </div>
 
@@ -44,7 +44,7 @@
       </div>
 
       <h4>Emi Per Month = <strong>{{emiResponseResult.emiPerMonth}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h4>
-      <h5>Total Interest = <strong>{{emiResponseResult.totalInterestOverTime}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h5>
+      <h5>Total Interest = <strong>{{emiResponseResult.totalInterestOverTimeRounded}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h5>
       <h5>Total Money to Pay = <strong>{{emiResponseResult.totalMoneyToPay}}&nbsp;{{currencySymbolsNgModelNumber}}</strong></h5>
 
 
@@ -90,8 +90,8 @@
         </select>
       </div>
       <div class="input-field col s4">
-        <input id="defaultInterest" type="number" (change)="onSettingsNgModelChange($event.target)">
-        <label for="defaultInterest">Default Interest</label>
+        <input id="defaultInterest" type="number" [value]="defaultInterestNoUpdate" (change)="onSettingsNgModelChange($event.target)">
+        <label class="active" for="defaultInterest">Default Interest</label>
       </div>
       <div class="input-field col s4">
         <input id="defaultTenureValue" type="number" (change)="onSettingsNgModelChange($event.target)">

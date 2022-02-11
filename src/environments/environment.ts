@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   websiteShortName: "EmiTODO()",
   settingsRoundingOptionNgModelDefault: 'one-digit',
+  defaultInterest: 12,
+  defaultTenure: 10,
+  defaultPrincipal: 10000,
 };
 
 /*

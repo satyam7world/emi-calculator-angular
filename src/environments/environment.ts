@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   websiteShortName: "EmiTODO()",
-  settingsRoundingOptionNgModelDefault: 'ceil',
+  settingsRoundingOptionNgModelDefault: 'one-digit',
 };
 
 /*

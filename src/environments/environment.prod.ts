@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   websiteShortName: "EmiProdTODO()",
-  settingsRoundingOptionNgModelDefault: 'ceil',
+  settingsRoundingOptionNgModelDefault: 'one-digit',
 };

@@ -82,10 +82,9 @@ class Calculator {
     }
 
 
-
     return {
       emiPerMonth: emiPerMonthFinal, emiRawData: data,
-      totalMoneyToPay: totalMoneyToPayFinal, totalInterestOverTime
+      totalMoneyToPay: totalMoneyToPayFinal, totalInterestOverTime: totalInterestOverTimeFinal
     }
   }
 }

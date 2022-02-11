@@ -31,6 +31,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   // todo : angular json budget edited
 
+  // todo : add , in value with option to change internation or indian . or ,
+
 
   ngAfterViewInit(): void {
     this.everyThingInitForChart = true;

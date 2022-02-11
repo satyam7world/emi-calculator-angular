@@ -1,8 +1,8 @@
 import EmiRawData from "./EmiRawData";
 
 interface EmiResultResponse {
-  emiPerMonth: number;
-  totalMoneyToPay: number;
+  emiPerMonth: string;
+  totalMoneyToPay: string;
   totalInterestOverTime: number;
   emiRawData: EmiRawData;
 }

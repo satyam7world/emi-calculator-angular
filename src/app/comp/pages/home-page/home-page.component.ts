@@ -6,6 +6,7 @@ import {createEmiRawData} from "../../../otros/utils/creator/EmiRawDataCreator";
 import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
 import {ApexChart, ApexLegend, ApexNonAxisChartSeries, ChartComponent} from "ng-apexcharts";
 import * as M from "materialize-css";
+import {environment} from "../../../../environments/environment";
 
 type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -82,6 +83,16 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   currencySymbolsNgModelNumber: string = localStorage.getItem("displayCurrencySymbolSelectSetting") || '₹';
 
   // currencySignAppendable = localStorage.getItem("displayCurrencySymbolSelectSetting") || '₹';
+
+  public settingsRoundingOption = [
+    {value: 'two-digit', nameX: "Show 2 digits decimal"},
+    {value: 'no-rounding', nameX: "No Rounding"},
+    {value: 'ceil', nameX: "(Ceil) Rounding Integer"},
+    {value: 'floor', nameX: "(Floor) Rounding Integer"},
+    {value: 'one-digit', nameX: "Show 1 digits decimal"},
+    {value: 'three-digit', nameX: "Show 3 digits decimal"}
+  ];
+  settingsRoundingOptionNgModel: string = localStorage.getItem("numberRoundingSelectSetting") || environment.settingsRoundingOptionNgModelDefault
 
   constructor() {
     this.chartOptions = {
@@ -170,6 +181,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       dataCollection = createEmiRawData(this.principalAmount, this.interestRate,
         undefined, this.tenureInYear)
     }
+    // console.log(this.settingsRoundingOptionNgModel)
     const data = calc.calculateEmi(dataCollection);
     this.emiResponseResult = data
     // update chart
@@ -187,10 +199,16 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     // console.log(data.id, data.value)
     switch (data.id) {
       case "displayCurrencySymbolSelectSetting":
-        console.log("helloca leed")
+        // console.log("helloca leed")
         // data.value contains a number so using the ngModel Value
         localStorage.setItem("displayCurrencySymbolSelectSetting", this.currencySymbolsNgModelNumber)
         break;
+      case "numberRoundingSelectSetting":
+        // data.value contains a number so using the ngModel Value
+        localStorage.setItem("numberRoundingSelectSetting", this.settingsRoundingOptionNgModel)
+        this.calculateEmi()
+        break;
+
     }
   }
 }

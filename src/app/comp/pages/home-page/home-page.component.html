@@ -77,21 +77,16 @@
                 class="browser-defaultX" [(ngModel)]="currencySymbolsNgModelNumber" (change)="onSettingsNgModelChange($event.target )">
           <!--also empty-->
           <!--todo : load it from cache or settings--><!-- <option value="" disabled selected>Choose your Currency</option>-->
-<!--          <option value="" disabled selected>Select a Currency Symbol</option>-->
+          <!--          <option value="" disabled selected>Select a Currency Symbol</option>-->
           <option *ngFor="let a of currencySymbols" [ngValue]="a.value">{{a.nameX}}</option>
         </select>
       </div>
       <div class="input-field col s12">
         <label class="active">Number Rounding</label>
         <!--removed class="browser-default"-->
-        <select id="numberRoundingSelectSetting" (change)="onSettingsNgModelChange($event.target)">
+        <select id="numberRoundingSelectSetting" [(ngModel)]="settingsRoundingOptionNgModel" (change)="onSettingsNgModelChange($event.target)">
           <!-- <option value="" disabled selected>Choose your Currency</option>-->
-          <option value="two-digit">Show two digits decimal</option>
-          <option value="no-rounding">No Rounding</option>
-          <option value="ceil">Ceil Rounding Integer</option>
-          <option value="floor">Floor Rounding Integer</option>
-          <option value="one-digit">Show one digits decimal</option>
-          <option value="three-digit">Show three digits decimal</option>
+          <option *ngFor="let a of settingsRoundingOption" [ngValue]="a.value">{{a.nameX}}</option>
         </select>
       </div>
       <div class="input-field col s4">

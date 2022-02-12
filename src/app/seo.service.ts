@@ -15,7 +15,7 @@ export class SeoService {
     // default values
     config = {
       title: 'Emicalcu.in - Calculate emi and loan online',
-      description: 'Calculate emi online instantly, Just by entering three values ie. Tenure, Principal Amount, Interest. With features to estimate the number and change the Currency sign in reatime',
+      description: 'Calculate emi online instantly, Just by entering three values ie. Tenure, Principal Amount, Interest. With features to estimate the number and change the Currency sign in realtime',
       image: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1025&q=80',
       slug: '',
       ...config

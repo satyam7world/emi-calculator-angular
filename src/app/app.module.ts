@@ -13,6 +13,7 @@ import { ContactFeedbackComponent } from './pages/contact-feedback/contact-feedb
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
 import { AboutUsComponent } from './comp/pages/about-us/about-us.component';
+import { NotFoundComponent } from './comp/pages/not-found/not-found.component';
 
 // todo : In angular.json add .min. to everyone
 
@@ -27,6 +28,7 @@ import { AboutUsComponent } from './comp/pages/about-us/about-us.component';
     TermsAndConditionsComponent,
     DisclaimerComponent,
     AboutUsComponent,
+    NotFoundComponent,
 
   ],
   imports: [

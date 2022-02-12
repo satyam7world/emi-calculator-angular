@@ -16,6 +16,12 @@ const routes: Routes = [
   {path: 'tNc', component: TermsAndConditionsComponent},
   {path: 'disclaimer', component: DisclaimerComponent},
   {path: 'about-emicalcu', component: AboutUsComponent},
+  // https://stackoverflow.com/a/36261194/11815154
+  // {path: '404', component: NotFoundComponent},
+  // {path: '**', redirectTo: '/404'},
+
+  {path: '**', redirectTo: ''}, // Fix white page when no route available
+
   // {path: '', component: },
 ];
 

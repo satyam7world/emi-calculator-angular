@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
+import {environment} from "../../../environments/environment";
+import {SeoService} from "../../seo.service";
 
 @Component({
   selector: 'app-terms-and-conditions',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TermsAndConditionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService : Title, private seo : SeoService) {
+    this.titleService.setTitle(environment.websiteShortName + " - Terms & Conditions")
+    this.seo.generateTags({
+      description: "Emicalcu.in Terms and Condition",
+      title: "Emicalcu.in - Terms and Condition", slug: "tNc"
+    })
+  }
 
   ngOnInit(): void {
   }

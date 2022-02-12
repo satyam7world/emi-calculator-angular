@@ -11,6 +11,8 @@ import {NgApexchartsModule} from "ng-apexcharts";
 import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 import { ContactFeedbackComponent } from './pages/contact-feedback/contact-feedback.component';
 import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
+import { DisclaimerComponent } from './pages/disclaimer/disclaimer.component';
+import { AboutUsComponent } from './comp/pages/about-us/about-us.component';
 
 // todo : In angular.json add .min. to everyone
 
@@ -23,6 +25,8 @@ import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-
     PrivacyPolicyComponent,
     ContactFeedbackComponent,
     TermsAndConditionsComponent,
+    DisclaimerComponent,
+    AboutUsComponent,
 
   ],
   imports: [

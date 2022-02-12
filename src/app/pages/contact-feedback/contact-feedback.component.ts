@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
+import {environment} from "../../../environments/environment";
+import {SeoService} from "../../seo.service";
 
 @Component({
   selector: 'app-contact-feedback',
@@ -7,7 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactFeedbackComponent implements OnInit {
 
-  constructor() { }
+  constructor(private titleService : Title, private seo : SeoService) {
+    this.titleService.setTitle(environment.websiteShortName + " - Contact Emicalcu.in")
+    this.seo.generateTags({
+      description: "Emicalcu.in contact Emicalcu.in",
+      title: "Emicalcu.in - Contact Emicalcu.in", slug: "contactNfeedback"
+    })
+  }
 
   ngOnInit(): void {
   }

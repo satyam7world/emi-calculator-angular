@@ -94,12 +94,12 @@
         <label class="active" for="defaultInterest">Default Interest</label>
       </div>
       <div class="input-field col s4">
-        <input id="defaultTenureValue" type="number" (change)="onSettingsNgModelChange($event.target)">
-        <label for="defaultTenureValue">Default Tenure Value</label>
+        <input id="defaultTenureValue" type="number" [value]="defaultTenureTimeNoUpdate" (change)="onSettingsNgModelChange($event.target)">
+        <label class="active" for="defaultTenureValue">Default Tenure Value</label>
       </div>
       <div class="input-field col s4">
-        <input id="idPrincipalDefault" type="number" (change)="onSettingsNgModelChange($event.target)">
-        <label for="idPrincipalDefault">Default Principal Value</label>
+        <input id="idPrincipalDefault" type="number" [value]="defaultPrincipalAmountNoUpdate" (change)="onSettingsNgModelChange($event.target)">
+        <label class="active" for="idPrincipalDefault">Default Principal Value</label>
       </div>
     </div>
   </div>

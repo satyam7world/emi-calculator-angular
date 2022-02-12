@@ -7,6 +7,7 @@ import EmiResultResponse from "../../../otros/datapojo/EmiResultResponse";
 import {ApexChart, ApexLegend, ApexNonAxisChartSeries, ChartComponent} from "ng-apexcharts";
 import * as M from "materialize-css";
 import {environment} from "../../../../environments/environment";
+import {SeoService} from "../../../seo.service";
 
 type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -62,14 +63,14 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   // no update for settings input which will remain static unless user changed manually, value // https://stackoverflow.com/a/64864412/11815154
   defaultInterestNoUpdate = +(localStorage.getItem('defaultInterest') || environment.defaultInterest);
+  defaultTenureTimeNoUpdate = +(localStorage.getItem('defaultTenureValue') || environment.defaultTenure);
+  defaultPrincipalAmountNoUpdate = +(localStorage.getItem('idPrincipalDefault') || environment.defaultPrincipal);
 
-  // todo: same for both left
-
-  tenureTime: number = +(localStorage.getItem('defaultTenureValue') || environment.defaultTenure);
+  tenureTime: number = this.defaultTenureTimeNoUpdate
   //  https://stackoverflow.com/a/14668510/11815154 // +(string to number)
   interestRate: number = this.defaultInterestNoUpdate
   //idPrincipalDefault : the setter : settings one
-  principalAmount: number = +(localStorage.getItem('idPrincipalDefault') || environment.defaultPrincipal);
+  principalAmount: number = this.defaultPrincipalAmountNoUpdate
 
 
   // todo : 06/02/22 / add a setting option to convert value on toggle
@@ -106,7 +107,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   ];
   settingsRoundingOptionNgModel: string = localStorage.getItem("numberRoundingSelectSetting") || environment.settingsRoundingOptionNgModelDefault
 
-  constructor() {
+  constructor(private seo: SeoService) {
     this.chartOptions = {
       series: [this.emiResponseResult.totalInterestOverTimeAccurate, this.emiResponseResult.emiRawData.principal],
       chart: {
@@ -148,6 +149,8 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     // const instances = M.FormSelect.init(elems, {});
 
     this.setupSettingsControl()
+
+    this.seo.generateTags({})
   }
 
   setupSettingsControl() { // Will set the default option at startUp

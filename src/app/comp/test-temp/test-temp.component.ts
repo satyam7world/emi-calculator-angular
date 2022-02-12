@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestTempComponent implements OnInit {
 
+  // todo delete this one
+
   constructor() { }
 
   ngOnInit(): void {

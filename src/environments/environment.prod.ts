@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  websiteShortName: "EmiProdTODO()",
+  websiteShortName: "EmiCalcu.in",
   settingsRoundingOptionNgModelDefault: 'one-digit',
   defaultInterest: 12,
   defaultTenure: 10,

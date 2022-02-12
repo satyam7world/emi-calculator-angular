@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  websiteShortName: "EmiCalcu.in D",
+  websiteShortName: "EmiCalcu.in",
   settingsRoundingOptionNgModelDefault: 'one-digit',
   defaultInterest: 12,
   defaultTenure: 10,

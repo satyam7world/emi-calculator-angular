@@ -14,6 +14,15 @@ export class NavbarComponent implements OnInit {
 
   environment = environment
 
+  navLinks = [
+    {routerLinkPath: '/', nameX: 'Home'},
+    {routerLinkPath: 'privacy-policy', nameX: 'Privacy Policy'},
+    {routerLinkPath: 'contact&feedback', nameX: 'Contact & Feedback'},
+    {routerLinkPath: 'disclaimer', nameX: 'Disclaimer'},
+    {routerLinkPath: 'tNc', nameX: 'Terms & Conditions'},
+    // {routerLinkPath: '', nameX: ''},
+  ]
+
 
   ngOnInit(): void {
   }

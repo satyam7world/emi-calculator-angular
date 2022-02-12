@@ -8,7 +8,9 @@ import {FormsModule} from "@angular/forms";
 import {NavbarComponent} from './comp/common/navbar/navbar.component';
 import {FooterDfComponent} from './comp/common/footer-df/footer-df.component';
 import {NgApexchartsModule} from "ng-apexcharts";
-import { TestTempComponent } from './comp/test-temp/test-temp.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+import { ContactFeedbackComponent } from './pages/contact-feedback/contact-feedback.component';
+import { TermsAndConditionsComponent } from './pages/terms-and-conditions/terms-and-conditions.component';
 
 // todo : In angular.json add .min. to everyone
 
@@ -18,7 +20,10 @@ import { TestTempComponent } from './comp/test-temp/test-temp.component';
     HomePageComponent,
     NavbarComponent,
     FooterDfComponent,
-    TestTempComponent,
+    PrivacyPolicyComponent,
+    ContactFeedbackComponent,
+    TermsAndConditionsComponent,
+
   ],
   imports: [
     BrowserModule,

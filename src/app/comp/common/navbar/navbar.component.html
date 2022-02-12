@@ -10,14 +10,8 @@
           <i class="material-icons">menu</i>
         </a>
         <ul class="right hide-on-med-and-down">
-          <li>
-            <a routerLink="/">Home</a>
-          </li>
-          <li>
-            <a routerLink="/soon">soon</a>
-          </li>
-          <li>
-            <a routerLink="/privacy-policy-web">Privacy Policy</a>
+          <li *ngFor="let n of navLinks">
+            <a [routerLink]="n.routerLinkPath">{{n.nameX}}</a>
           </li>
         </ul>
       </div>
@@ -26,13 +20,7 @@
 </div>
 <!--Duplicate Navigation (Required)-->
 <ul class="sidenav" id="mobile-nav">
-  <li>
-    <a routerLink="/">Home</a>
-  </li>
-  <li>
-    <a routerLink="/soon">soon</a>
-  </li>
-  <li>
-    <a routerLink="/privacy-policy-web">Privacy Policy</a>
+  <li *ngFor="let n of navLinks">
+    <a [routerLink]="n.routerLinkPath">{{n.nameX}}</a>
   </li>
 </ul>

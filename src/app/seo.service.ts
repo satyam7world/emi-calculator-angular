@@ -16,7 +16,7 @@ export class SeoService {
     config = {
       title: 'Emicalcu.in - Calculate emi and loan online',
       description: 'Calculate emi online instantly, Just by entering three values ie. Tenure, Principal Amount, Interest. With features to estimate the number and change the Currency sign in reatime',
-      image: 'logo',
+      image: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1025&q=80',
       slug: '',
       ...config
     }
@@ -25,7 +25,7 @@ export class SeoService {
     // this.meta.updateTag({name: 'twitter:site', content: 'emicalcu.in'});
     this.meta.updateTag({name: 'twitter:title', content: config.title});
     this.meta.updateTag({name: 'twitter:description', content: config.description});
-    // this.meta.updateTag({name: 'twitter:image', content: config.image});
+    this.meta.updateTag({name: 'twitter:image', content: config.image});
 
     this.meta.updateTag({property: 'og:type', content: 'article'});
     this.meta.updateTag({property: 'og:site_name', content: 'Emicalcu.in'});

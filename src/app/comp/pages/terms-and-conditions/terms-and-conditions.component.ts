@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from "@angular/platform-browser";
-import {environment} from "../../../environments/environment";
-import {SeoService} from "../../seo.service";
+import {environment} from "../../../../environments/environment";
+import {SeoService} from "../../../seo.service";
 
 @Component({
   selector: 'app-terms-and-conditions',

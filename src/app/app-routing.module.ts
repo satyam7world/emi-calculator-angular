@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from "./comp/pages/home-page/home-page.component";
-import {PrivacyPolicyComponent} from "./pages/privacy-policy/privacy-policy.component";
-import {ContactFeedbackComponent} from "./pages/contact-feedback/contact-feedback.component";
-import {TermsAndConditionsComponent} from "./pages/terms-and-conditions/terms-and-conditions.component";
-import {DisclaimerComponent} from "./pages/disclaimer/disclaimer.component";
+import {PrivacyPolicyComponent} from "./comp/pages/privacy-policy/privacy-policy.component";
+import {ContactFeedbackComponent} from "./comp/pages/contact-feedback/contact-feedback.component";
+import {TermsAndConditionsComponent} from "./comp/pages/terms-and-conditions/terms-and-conditions.component";
+import {DisclaimerComponent} from "./comp/pages/disclaimer/disclaimer.component";
 import {AboutUsComponent} from "./comp/pages/about-us/about-us.component";
 
 const routes: Routes = [

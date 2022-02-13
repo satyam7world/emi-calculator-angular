@@ -34,6 +34,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   // todo : add , in value with option to change internation or indian . or ,
 
+  // todo : add a seek bar in input
 
   ngAfterViewInit(): void {
     this.everyThingInitForChart = true;

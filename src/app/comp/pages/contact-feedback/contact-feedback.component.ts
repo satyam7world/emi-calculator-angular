@@ -11,10 +11,10 @@ import {SeoService} from "../../../seo.service";
 export class ContactFeedbackComponent implements OnInit {
 
   constructor(private titleService : Title, private seo : SeoService) {
-    this.titleService.setTitle(environment.websiteShortName + " - Contact Emicalcu.in")
+    this.titleService.setTitle(environment.websiteShortName + " - Contact EMI calculator")
     this.seo.generateTags({
-      description: "Emicalcu.in contact Emicalcu.in",
-      title: "Emicalcu.in - Contact Emicalcu.in", slug: "contactNfeedback"
+      description: "EMI calculator contact EMI calculator",
+      title: "EMI calculator - Contact EMI calculator", slug: "contact"
     })
   }
 

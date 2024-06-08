@@ -13,8 +13,8 @@ export class DisclaimerComponent implements OnInit {
   constructor(private titleService: Title, private seo: SeoService) {
     this.titleService.setTitle(environment.websiteShortName + " - Disclaimer")
     this.seo.generateTags({
-      description: "Emicalcu.in Disclaimer By using our website, you hereby consent to our disclaimer and agree to its terms. ",
-      title: "Emicalcu.in - Disclaimer", slug: "disclaimer"
+      description: "EMI calculator Disclaimer By using our website, you hereby consent to our disclaimer and agree to its terms. ",
+      title: "EMI calculator - Disclaimer", slug: "disclaimer"
     })
   }
 

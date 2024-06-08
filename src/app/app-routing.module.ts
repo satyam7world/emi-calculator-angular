@@ -12,10 +12,10 @@ const routes: Routes = [
   // {path: '/', component: HomePageComponent},
   // {path: ' ', component: HomePageComponent},
   {path: 'privacy-policy', component: PrivacyPolicyComponent},
-  {path: 'contactNfeedback', component: ContactFeedbackComponent},
-  {path: 'tNc', component: TermsAndConditionsComponent},
+  {path: 'contact', component: ContactFeedbackComponent},
+  {path: 'terms', component: TermsAndConditionsComponent},
   {path: 'disclaimer', component: DisclaimerComponent},
-  {path: 'about-emicalcu', component: AboutUsComponent},
+  {path: 'about', component: AboutUsComponent},
   // https://stackoverflow.com/a/36261194/11815154
   // {path: '404', component: NotFoundComponent},
   // {path: '**', redirectTo: '/404'},

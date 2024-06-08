@@ -14,7 +14,7 @@ export class SeoService {
   generateTags(config: { title?: any; description?: any; image?: any; slug?: any; }) {
     // default values
     config = {
-      title: 'Emicalcu.in - Calculate emi and loan online',
+      title: 'Emi - Calculate emi and loan online',
       description: 'Calculate emi online instantly, Just by entering three values ie. Tenure, Principal Amount, Interest. Features to estimate and select the currency sign.',
       image: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1025&q=80',
       slug: '',
@@ -28,7 +28,7 @@ export class SeoService {
     this.meta.updateTag({name: 'twitter:image', content: config.image});
 
     this.meta.updateTag({property: 'og:type', content: 'article'});
-    this.meta.updateTag({property: 'og:site_name', content: 'Emicalcu.in'});
+    this.meta.updateTag({property: 'og:site_name', content: 'EMI calculator'});
     this.meta.updateTag({property: 'og:title', content: config.title});
     this.meta.updateTag({property: 'og:description', content: config.description});
     this.meta.updateTag({property: 'og:image', content: config.image});

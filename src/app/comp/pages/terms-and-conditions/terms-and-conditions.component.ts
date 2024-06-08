@@ -13,8 +13,8 @@ export class TermsAndConditionsComponent implements OnInit {
   constructor(private titleService : Title, private seo : SeoService) {
     this.titleService.setTitle(environment.websiteShortName + " - Terms & Conditions")
     this.seo.generateTags({
-      description: "Emicalcu.in Terms and Condition",
-      title: "Emicalcu.in - Terms and Condition", slug: "tNc"
+      description: "EMI calculator Terms and Condition",
+      title: "EMI calculator - Terms and Condition", slug: "terms"
     })
   }
 

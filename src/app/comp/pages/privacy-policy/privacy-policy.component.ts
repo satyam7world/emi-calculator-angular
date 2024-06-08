@@ -13,8 +13,8 @@ export class PrivacyPolicyComponent implements OnInit {
   constructor(private titleService: Title, private seo: SeoService) {
     this.titleService.setTitle(environment.websiteShortName + " - Privacy Policy")
     this.seo.generateTags({
-      description: "Emicalcu.in privacy policy ",
-      title: "Emicalcu.in - Privacy Policy", slug: "privacy-policy"
+      description: "EMI calculator privacy policy ",
+      title: "EMI calculator - Privacy Policy", slug: "privacy-policy"
     })
   }
 

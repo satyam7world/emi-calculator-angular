@@ -1,5 +1,7 @@
 # Emi Calculator - Angular
 
+![ScreenShot](/screen_2024-06-08.png?raw=true "ScreenShot")
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 
 ## Development server
